@@ -1,0 +1,6 @@
+APScheduler==3.10.4
+confluent-kafka==2.3.0
+flask==3.0.1
+psycopg2==2.9.9
+psycopg2-binary==2.9.5
+pydantic==2.5.3
