@@ -31,7 +31,7 @@ class StgMessageProcessor:
         self._logger.debug(f"{datetime.utcnow()}: BATCH FINISHED PROCESSING")
 
     def _process_message(self, msg: dict, stg_repository: StgRepository) -> None:
-        self._logger.info(f"\n======\n======\nMESSAGE with contents:\n{msg}\n======\n======\n")
+        self._logger.info(f"\n======\n======--- MESSAGE with contents:\n{msg}\n======\n======\n")
         payload = msg['payload']
         products = payload.get('order_items', [])
 
@@ -87,13 +87,3 @@ class StgMessageProcessor:
             result.append(product_info)
 
         return result
-
-# consumer = KafkaConsumer(str(os.getenv('KAFKA_HOST') or ""), str(os.getenv('KAFKA_PORT') or "0"), str(os.getenv('KAFKA_CONSUMER_USERNAME') or ""), str(os.getenv('KAFKA_CONSUMER_PASSWORD') or ""), str(os.getenv('KAFKA_SOURCE_TOPIC') or ""), str(os.getenv('KAFKA_CONSUMER_GROUP') or ""), "/Users/ruasumv/.redis/YandexInternalRootCA.crt")
-# producer = KafkaProducer(str(os.getenv('KAFKA_HOST') or ""), str(os.getenv('KAFKA_PORT') or "0"), str(os.getenv('KAFKA_CONSUMER_USERNAME') or ""), str(os.getenv('KAFKA_CONSUMER_PASSWORD') or ""), str(os.getenv('KAFKA_SOURCE_TOPIC') or ""), "/Users/ruasumv/.redis/YandexInternalRootCA.crt")
-# redis_client = RedisClient(str(os.getenv('REDIS_HOST') or ""), str(str(os.getenv('REDIS_PORT')) or "0"), str(os.getenv('REDIS_PASSWORD') or ""), "/Users/ruasumv/.redis/YandexInternalRootCA.crt")
-# stg_repository = StgRepository(PgConnect(str(os.getenv('PG_WAREHOUSE_HOST') or ""), str(os.getenv('PG_WAREHOUSE_PORT') or "0"), str(os.getenv('PG_WAREHOUSE_DBNAME') or ""), str(os.getenv('PG_WAREHOUSE_USER') or ""), str(os.getenv('PG_WAREHOUSE_PASSWORD') or "")))
-# logger = Logger()
-# batch_size = str(os.getenv('BATCH_SIZE') or "100")
-
-# processor = StgMessageProcessor(consumer, producer, redis_client, stg_repository, batch_size, logger)
-# processor.run()
