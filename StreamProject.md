@@ -80,7 +80,7 @@ ___
 5.     Поочередно заполнить слои хранилища
 
 *Полная архитектура решения:*
-![A diagram of a service](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image001.png)
+![photo_2024-02-24_12-52-25](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/6cc99931-1e77-4262-bfc1-5372f0fa5010)
 
 В проектной работе будет реализована микросервисная архитектура, предусмотрен асинхронный способ взаимодействия сервисов.
 
@@ -89,8 +89,8 @@ ___
 Сообщение сохраняется в Kafka до тех пор, пока сервис-обработчик не будет готов эту информацию принять.
 
 В удобный момент обработчик вычитывает сообщение из Kafka. Иногда сервис может отправить сообщение обратно, также через очередь.
+![photo_2024-02-24_12-52-23](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/8f629c76-470f-4a6e-beaf-8b8571c0b9ed)
 
-![A diagram of a diagram](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image002.png)
 
 ## **Стратегия выбора модели данных для слоя** **DDS**
 
@@ -108,7 +108,8 @@ ___
 Способы проектирования Кимбалла и Инмана не подходят, так как если модели модифицируются и расширяются, то возникают проблемы. Приходится пересобирать и заново проектировать, дорабатывать детали процесса сборки. Также в них есть проблемы, связанные с денормализацией данных, данные не в конечной НФ.
 
 *Модель данных Data Vault в слое DDS:*
-![[Image (12).png]]
+![photo_2024-02-24_12-52-24](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/83f8fba4-04bd-412c-b7a5-274d1cfdad2b)
+
 ## **Планирование логики сервиса**
 
 Вкратце: чтение сообщений из Kafka, наполнение stg-слоя, обогащение данными из Redis и отправка обогащённых сообщений.
@@ -154,24 +155,29 @@ ON CONFLICT(___) DO UPDATE SET ___ = EXCLUDED.___
 
 1.     Поднятие сервиса в локальном докере
 
-![A screenshot of a computer](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image004.png)
+![image](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/4ba40e5b-3aac-4340-a264-393fa02399ab)
 
-![A black screen with blue text](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image005.png)
+![image](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/0476ad7c-fb20-4f32-b620-ad125801daa1)
 
-![A screenshot of a running program](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image006.png)
+![image](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/6b0a5af4-31f1-49ab-bff0-97f711d3988d)
+
 
 2.     Пуш контейнера в Container Registry
 
-![A computer screen with white text](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image007.png)
+![image](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/cc662e69-a110-4dc6-b245-e7a7dced7998)
+
 
 3.     Релиз сервиса с помощью пакетного менеджера Helm
 
-![](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image008.png)
+![image](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/7296c1f6-d227-4e27-ac2a-d7dc05877261)
+
 
 4.     Проверка того, что сервис запущен, с помощью kubectl
 
-![A screenshot of a computer](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image009.png)
+![image](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/47e8d142-d9a1-4da4-a5d6-2a9cc45add02)
+
 
 5.     Наполнение витрин данных в хранилище
 
-![A screenshot of a computer](file:////Users/ruasumv/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image010.png)
+![image](https://github.com/MatthewS-M/Stream-Cloud-Containerization-project/assets/117388645/e5e26657-dd3c-436f-80bb-546f7c68b21f)
+
