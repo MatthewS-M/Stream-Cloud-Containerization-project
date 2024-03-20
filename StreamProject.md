@@ -157,15 +157,24 @@ ON CONFLICT(___) DO UPDATE SET ___ = EXCLUDED.___
 
 Порядок действий при обработке сообщения:
 1.     Сложить сообщение as-is в БД по логике upsert.
+
 2.     Достать user_id из сообщения.
+
 3.     Получить user из Redis по user_id.
+
 4.     Достать restaurant_id из сообщения.
+
 5.     Получить restaurant из Redis по restaurant_id.
+
 6.     Для каждого product_id в сообщении:
-7.     Достать product_id.
-8.     Получить product из Redis (нужна категория).
-9.     Сформировать выходное сообщение.
-10.  Отправить сообщение в Kafka.
+
+  - Достать product_id.
+  
+  - Получить product из Redis (нужна категория).
+    
+  - Сформировать выходное сообщение.
+    
+  - Отправить сообщение в Kafka.
 
 *Ссылка на dashboard*: [https://datalens.yandex.com/fg5q9yvb5d723-yandexstreamdash](https://datalens.yandex.com/fg5q9yvb5d723-yandexstreamdash)
 
